@@ -1,5 +1,5 @@
-import "./App.css"
 import {useEffect, useState} from "react";
+import {Link, useParams} from "react-router-dom";
 
 
 const GOOD_DONGERS = [
@@ -74,17 +74,6 @@ const random = (dongers) => {
     return dongers[Math.floor(Math.random() * dongers.length)]
 }
 
-const nextSum = () => {
-    const a = random([9])
-    const b = random([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-    return {
-        a: `${a}`,
-        b: `${b}`,
-        op: '✖',
-        ans: `${a * b}`
-    }
-}
-
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -111,7 +100,11 @@ function permute(seed1, seed2) {
 
 export function App() {
 
-    const [first, ...rest] = permute([9], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    const { numbers } = useParams()
+
+    const as = numbers.split(",").map(n => parseInt(n, 10))
+
+    const [first, ...rest] = permute(as, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     const [sum, setSum] = useState(first)
     const [questions, setQuestions] = useState(rest)
     const [reaction, setReaction] = useState("( O‿O )")
@@ -198,9 +191,10 @@ export function App() {
             )
         }
         {
-            (dead || win) && (
+            (dead || win) && (<>
+                    <div className="restart"><Link to="/">ᐊ</Link></div>
                 <div className="restart" onClick={() => {
-                    const [first, ...rest] = permute([9], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                    const [first, ...rest] = permute(as, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
                     setSum(first)
                     setQuestions(rest)
                     setWin(false)
@@ -209,6 +203,7 @@ export function App() {
                     setReaction("( O‿O )")
                     setTimer(0);
                 }}>⟳</div>
+                </>
             )
         }
         {

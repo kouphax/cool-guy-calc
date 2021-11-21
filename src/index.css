@@ -10,12 +10,41 @@ html, body {
     background-color: var(--bg-color);
     color: var(--border-color);
     height: 100%;
+    font-family: var(--font);
 }
-
 
 .container {
     text-align: center;
-    margin-top: 16em;
+    margin-top: 10em;
+}
+
+.times-button-container {
+    width: 250px;
+    margin: 0 auto;
+}
+.times-button {
+    display: inline-block;
+    font-size: 1.5em;
+    border: var(--border-color) solid 8px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 0px 4px var(--shadow-color);
+    margin: 0.5em;
+    padding: 0.5em;
+    font-weight: bold;
+    width: 50px;
+}
+
+.times-button-wider {
+    width: 160px;
+}
+
+.times-button-container a {
+    color: var(--border-color);
+    text-decoration: none;
+}
+
+.subheader {
+    opacity: 0.75;
 }
 
 .cool-guy-calc {
@@ -89,11 +118,17 @@ html, body {
 }
 
 .restart {
-    margin: 1em auto 0;
+    margin: 0.75em 0.25em 0em 0.25em;
     font-family: var(--font);
     font-size: 3em;
     font-weight: bold;
     cursor: pointer;
+    display: inline-block;
+}
+
+.restart a {
+    text-decoration: none;
+    color: var(--border-color);
 }
 
 .restart-message {

@@ -1,47 +1,37 @@
-
 import * as React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
+import {App as Sums} from './App';
 
 function App() {
     return (
-        <div>
-            <header>
-                <h1>Welcome to React Router!</h1>
-            </header>
+        <div className="container">
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="about" element={<About />} />
+                <Route path="/" element={<LandingPage/>}/>
+                <Route path="/times/:numbers" element={<Sums/>}/>
             </Routes>
         </div>
     );
 }
 
-function Home() {
+function LandingPage() {
     return (
         <>
             <main>
-                <h2>Welcome to the homepage!</h2>
-                <p>You can do this, I believe in you.</p>
+                <h1>COOL:GUY:CALC</h1>
+                <h2 className="subheader">YOU CAN DO THIS I BELIEVE IN YOU</h2>
             </main>
-            <nav>
-                <Link to="/about">About</Link>
-            </nav>
-        </>
-    );
-}
-
-function About() {
-    return (
-        <>
-            <main>
-                <h2>Who are we?</h2>
-                <p>
-                    That feels like an existential question, don't you
-                    think?
-                </p>
-            </main>
-            <nav>
-                <Link to="/">Home</Link>
+            <nav className="times-button-container">
+                <Link to="/times/1"><div className="times-button">1 ✖</div></Link>
+                <Link to="/times/2"><div className="times-button">2 ✖</div></Link>
+                <Link to="/times/3"><div className="times-button">3 ✖</div></Link>
+                <Link to="/times/4"><div className="times-button">4 ✖</div></Link>
+                <Link to="/times/5"><div className="times-button">5 ✖</div></Link>
+                <Link to="/times/6"><div className="times-button">6 ✖</div></Link>
+                <Link to="/times/7"><div className="times-button">7 ✖</div></Link>
+                <Link to="/times/8"><div className="times-button">8 ✖</div></Link>
+                <Link to="/times/9"><div className="times-button">9 ✖</div></Link>
+                <Link to="/times/10"><div className="times-button">10 ✖</div></Link>
+                <Link to="/times/1,2,3,4,5,6,7,8,9,10"><div className="times-button times-button-wider">﹡✖</div></Link>
             </nav>
         </>
     );
