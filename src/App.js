@@ -98,13 +98,14 @@ function permute(seed1, seed2) {
     return shuffle(permutations);
 }
 
+
 export function App() {
 
-    const { numbers } = useParams()
+    const { numbers, count } = useParams()
 
     const as = numbers.split(",").map(n => parseInt(n, 10))
 
-    const [first, ...rest] = permute(as, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    const [first, ...rest] = permute(as, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).slice(0, parseInt(count, 10) || Infinity)
     const [sum, setSum] = useState(first)
     const [questions, setQuestions] = useState(rest)
     const [reaction, setReaction] = useState("( O‿O )")
@@ -173,7 +174,7 @@ export function App() {
                     {
                         Array(MAX_HEARTS)
                             .fill(0)
-                            .map((_, i) => i < lives ? (<span>♥</span>) : <span className="depleted">♥</span>)
+                            .map((_, i) => i < lives ? (<span key={i}>♥</span>) : <span key={i} className="depleted">♥</span>)
                     }
                 </div>
             </div>

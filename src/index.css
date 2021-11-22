@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Code+Latin:wght@400;600&display=swap');
+
 :root {
     --bg-color: #FCFCFA;
     --border-color: #542D16;
     --inner-border-color: #DFA08F;
     --shadow-color: #F7E5DB;
-    --font: 'Iosevka Term', monospace;;
+    --font: 'M PLUS Code Latin', sans-serif;
 }
 
 html, body {
@@ -31,11 +33,11 @@ html, body {
     margin: 0.5em;
     padding: 0.5em;
     font-weight: bold;
-    width: 50px;
+    width: 55px;
 }
 
 .times-button-wider {
-    width: 160px;
+    width: 170px;
 }
 
 .times-button-container a {

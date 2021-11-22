@@ -8,6 +8,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>
                 <Route path="/times/:numbers" element={<Sums/>}/>
+                <Route path="/times/:numbers/:count" element={<Sums/>}/>
             </Routes>
         </div>
     );
@@ -31,7 +32,7 @@ function LandingPage() {
                 <Link to="/times/8"><div className="times-button">8 ✖</div></Link>
                 <Link to="/times/9"><div className="times-button">9 ✖</div></Link>
                 <Link to="/times/10"><div className="times-button">10 ✖</div></Link>
-                <Link to="/times/1,2,3,4,5,6,7,8,9,10"><div className="times-button times-button-wider">﹡✖</div></Link>
+                <Link to="/times/1,2,3,4,5,6,7,8,9,10/10"><div className="times-button times-button-wider">? ✖</div></Link>
             </nav>
         </>
     );
