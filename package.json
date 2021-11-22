@@ -2,7 +2,7 @@
   "name": "cool-guy-calc",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "source": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-react": "^7.16.0",
-    "parcel": "^2.0.1"
+    "parcel": "^2.0.1",
+    "push-dir": "^0.4.1"
   },
   "dependencies": {
     "react": "^17.0.2",
