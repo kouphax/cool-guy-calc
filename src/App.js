@@ -1,99 +1,9 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { Link, useParams } from "react-router-dom";
-
-const GOOD_DONGERS = [
-  "( ● ‿ ● )",
-  "⊂(▀¯▀⊂)",
-  "ᕕ( ՞ ᗜ ՞ )ᕗ",
-  "ᕦ( ̿ ﹏ ̿ )ᕤ",
-  "s( ^ ‿ ^)-b",
-  "(◉◞౪◟◉)",
-  "(ง ͠° ل͜ °)ง",
-  "(° ͜ʖ°)",
-  "(▀̿̿Ĺ̯̿̿▀̿ ̿)",
-  "♫ ┌༼ຈل͜ຈ༽┘ ♪",
-  "( ‾ʖ̫‾)",
-  "( ͡° ͜ʖ ͡°)",
-  "( ＾◡＾)",
-  "ԅ(ˆ⌣ˆԅ)",
-  "(ᵔᴥᵔ)",
-  "ಠ‿ಠ",
-  "( ◕ ◡ ◕ )",
-  "~(╯▽╰)~",
-  "~( ＾◡＾)~",
-  "┌( ͝° ͜ʖ͡°)ᕤ",
-  "ヽ༼ – ل͜ – ༽ﾉ",
-  "( ͡ᵔ ͜ʖ ͡ᵔ )",
-  "(͡◔ ͜ʖ ͡◔)",
-  "(=^-ω-^=)",
-  "~(˘◡˘~)",
-  "༼ᕗຈل͜ຈ༽ᕗ",
-  "(º◡º)っ",
-  "╰( ͡’◟◯ ͡’)╯",
-  "ヽ(”`▽´)ﾉ",
-  "(งಠل͜ಠ)ง",
-  "(っಠ‿ಠ)っ",
-  "ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ",
-  "(ง ͡ʘ ͜ʖ ͡ʘ)ง",
-];
-
-const BAD_DONGERS = [
-  "( ͡↑ ͜ʖ ͡↑)",
-  "╰[ ⁰﹏⁰ ]╯",
-  "ლ(ಥ Д ಥ )ლ",
-  "s( ^ ‸ ^)-p",
-  "ᕙ(◉෴◉)ᕗ",
-  "༼ ºل͟º༽",
-  "ʕ ͝°ل͟ ͝°ʔ",
-  "(⊙＿⊙’)",
-  "(╥﹏╥)",
-  "乁( •_• )ㄏ",
-  "(∩╹□╹∩)",
-  "(•_•)",
-  "(‘ºل͟º)",
-  "(つ 益 )つ",
-  "╭∩╮( ° ͜ʖ͡°)╭∩╮",
-  "ಠل͟ಠ",
-  "(╯_ʖ╰)",
-  "◕_◕",
-  "( ͝°_ʖ͡°)",
-  "ヽ(`Д´)ﾉ",
-  "(۞_۞)",
-  "(̿ಠ ̿Ĺ̯̿̿ಠ ̿)̄",
-  "(ᓄಠ_ಠ)ᓄ",
-  "(ºل͟º)",
-  "ノ(;Ĺ̯̿̿ ;ノ)",
-];
+import {randomBadDonger, randomGoodDonger} from "./dongers";
+import {permute} from "./func";
 
 const MAX_HEARTS = 4;
-
-const random = (dongers) => {
-  return dongers[Math.floor(Math.random() * dongers.length)];
-};
-
-function shuffle(a) {
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function permute(seed1, seed2) {
-  let permutations = [];
-  for (let i = 0; i < seed1.length; i++) {
-    for (let j = 0; j < seed2.length; j++) {
-      permutations.push({
-        a: `${seed1[i]}`,
-        b: `${seed2[j]}`,
-        op: "✖",
-        ans: `${seed1[i] * seed2[j]}`,
-      });
-    }
-  }
-
-  return shuffle(permutations);
-}
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -104,14 +14,14 @@ const reducer = (state, action) => {
       const correct = action.value === state.question.ans;
 
       if (correct) {
-        newState.reaction = random(GOOD_DONGERS);
+        newState.reaction = randomGoodDonger();
       } else {
         const newLives = state.lives - 1;
         if (newLives <= 0) {
           newState.reaction = "( ✖ _ ✖ )";
           newState.dead = true;
         } else {
-          newState.reaction = random(BAD_DONGERS);
+          newState.reaction = randomBadDonger();
         }
 
         newState.lives = newLives;
