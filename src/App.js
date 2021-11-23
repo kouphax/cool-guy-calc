@@ -140,8 +140,6 @@ export function App() {
           </div>
         </>
       )}
-      {state.win && <div className="restart-message">C:&gt; WIN.BAT</div>}
-      {state.dead && <div className="restart-message">sudo rm -rf /</div>}
     </div>
   );
 }
