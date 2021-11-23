@@ -14,5 +14,10 @@ const shuffle = curry((random, list) => {
 })(Math.random)
 
 export function permute(as, bs) {
-    return shuffle(chain(a => map(b => [a,b], bs), as))
+    return shuffle(chain(a => map(b => ({
+        a: `${a}`,
+        b: `${b}`,
+        op: "✖",
+        ans: `${a * b}`,
+    }), bs), as))
 }
